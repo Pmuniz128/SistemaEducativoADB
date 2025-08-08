@@ -1,33 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
+using SistemaEducativoADB.API.Services.Interfaces;
 
 namespace SistemaEducativoADB.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class EstudianteController : ControllerBase
+    public class EstudiantesController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IEstudianteService _service;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public EstudianteController(ILogger<WeatherForecastController> logger)
+        public EstudiantesController(IEstudianteService service)
         {
-            _logger = logger;
+            _service = service;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet]
+        public IActionResult Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var estudiantes = _service.GetAll();
+            return Ok(estudiantes);
         }
     }
 }
