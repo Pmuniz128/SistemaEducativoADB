@@ -1,11 +1,16 @@
 ﻿namespace SistemaEducativoADB.API.Models.Entities
 {
+
     public class Estudiante
     {
-        public int Id { get; set; }
+        public int IdEstudiante { get; set; } // id_estudiante
+        public int IdUsuario { get; set; }    // id_usuario
+        public string Carnet { get; set; }    // carnet
+        public string Telefono { get; set; }  // telefono
+        public string Direccion { get; set; } // direccion
+        public int? IdCarrera { get; set; }   // id_carrera (puede ser nullable si no siempre hay carrera)
 
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public int Age { get; set; }
+
+        //public Usuario Usuario { get; set; }
     }
 }
