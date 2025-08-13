@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SistemaEducativoADB.API.Services.Interfaces;
 
-namespace SistemaEducativoADB.Controllers
+namespace SistemaEducativoADB.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

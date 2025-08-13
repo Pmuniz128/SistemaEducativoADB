@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEducativoADB.API", "SistemaEducativoADB.API.csproj", "{BF0B47A9-1B08-405B-8A8E-F40F3526C6D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEducativoADB.FrontEnd", "..\SistemaEducativo.FrontEnd\SistemaEducativoADB.FrontEnd.csproj", "{C3E9E3F1-D20E-45F9-9581-844A62A58751}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEducativo.FrontEnd-", "..\SistemaEducativo.FrontEnd-\SistemaEducativo.FrontEnd-.csproj", "{95E28455-8F73-43A9-BA72-D2956C534902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{BF0B47A9-1B08-405B-8A8E-F40F3526C6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF0B47A9-1B08-405B-8A8E-F40F3526C6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF0B47A9-1B08-405B-8A8E-F40F3526C6D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3E9E3F1-D20E-45F9-9581-844A62A58751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3E9E3F1-D20E-45F9-9581-844A62A58751}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3E9E3F1-D20E-45F9-9581-844A62A58751}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3E9E3F1-D20E-45F9-9581-844A62A58751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E28455-8F73-43A9-BA72-D2956C534902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E28455-8F73-43A9-BA72-D2956C534902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E28455-8F73-43A9-BA72-D2956C534902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E28455-8F73-43A9-BA72-D2956C534902}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
