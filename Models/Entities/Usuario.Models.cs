@@ -14,6 +14,9 @@ namespace SistemaEducativoADB.API.Models.Entities
         public bool Estado { get; set; } // estado (1 = activo, 0 = inactivo)
         
         public DateTime FechaCreacion { get; set; } // fecha_creacion
+
+        public Estudiante Estudiante { get; set; } // Navegación
     }
 
-}
+
+  }

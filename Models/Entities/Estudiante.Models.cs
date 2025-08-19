@@ -11,6 +11,6 @@
         public int? IdCarrera { get; set; }   // id_carrera (puede ser nullable si no siempre hay carrera)
 
 
-        //public Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; } // Navegación
     }
 }
