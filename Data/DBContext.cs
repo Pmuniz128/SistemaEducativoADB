@@ -80,6 +80,41 @@ namespace SistemaEducativoADB.API.Data
                       .OnDelete(DeleteBehavior.Restrict);
             });
 
+            // Configuración de MATERIAS
+            modelBuilder.Entity<Materia>(entity =>
+            {
+                entity.ToTable("MATERIAS");
+
+                entity.HasKey(m => m.IdMateria);
+
+                entity.Property(m => m.IdMateria)
+                      .HasColumnName("id_materia");
+
+                entity.Property(m => m.Codigo)
+                      .HasColumnName("codigo")
+                      .HasMaxLength(20)
+                      .IsRequired();
+
+                entity.Property(m => m.Nombre)
+                      .HasColumnName("nombre")
+                      .HasMaxLength(100)
+                      .IsRequired();
+
+                entity.Property(m => m.Creditos)
+                      .HasColumnName("creditos")
+                      .IsRequired();
+
+                entity.Property(m => m.IdPlan)
+                      .HasColumnName("id_plan");
+
+                // Relación con PLAN_ESTUDIO (si hay entidad)
+                // Si tienes un modelo PlanEstudio, activa esto:
+                // entity.HasOne(m => m.PlanEstudio)
+                //       .WithMany(p => p.Materias)
+                //       .HasForeignKey(m => m.IdPlan)
+                //       .OnDelete(DeleteBehavior.Restrict);
+            });
+
             // Configuración de USUARIOS
             modelBuilder.Entity<Usuario>(entity =>
             {
