@@ -60,10 +60,7 @@ namespace SistemaEducativoADB.API.Data
                 entity.Property(p => p.IdProfesor)
                       .HasColumnName("id_profesor");
 
-                entity.Property(p => p.IdUsuario)
-                      .HasColumnName("id_usuario");
-
-                entity.Property(p => p.Cedula)
+                entity.Property(p => p.cedula)
                       .HasColumnName("cedula")
                       .HasMaxLength(20)
                       .IsRequired();
