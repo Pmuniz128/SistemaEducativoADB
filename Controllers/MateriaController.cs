@@ -8,11 +8,11 @@ namespace SistemaEducativoADB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EstudiantesController : ControllerBase
+    public class MateriasController : ControllerBase
     {
-        private readonly IEstudianteService _service;
+        private readonly IMateriaService _service;
 
-        public EstudiantesController(IEstudianteService service)
+        public MateriasController(IMateriaService service)
         {
             _service = service;
         }
@@ -20,50 +20,49 @@ namespace SistemaEducativoADB.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var estudiantes = await _service.GetAllEstudiantes();
-            return Ok(estudiantes);
+            var Materias = await _service.GetAllMaterias();
+            return Ok(Materias);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var estudiante = await _service.GetEstudianteById(id);
-            if (estudiante == null) return NotFound();
-            return Ok(estudiante);
+            var Materia = await _service.GetMateriaById(id);
+            if (Materia == null) return NotFound();
+            return Ok(Materia);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearEstudiante([FromBody] EstudianteCreateDto dto)
+        public async Task<IActionResult> CrearMateria([FromBody] MateriaCreateDto dto)
         {
             if (dto == null)
                 return BadRequest("Datos inválidos");
 
-            var estudiante = new Estudiante
+            var materia = new Materia
             {
-                IdUsuario = dto.IdUsuario,
-                Carnet = dto.Carnet,
-                Telefono = dto.Telefono,
-                Direccion = dto.Direccion,
-                IdCarrera = dto.IdCarrera
+                Codigo = dto.Codigo,
+                Nombre = dto.Nombre,
+                Creditos = dto.Creditos,
+                IdPlan = dto.IdPlan
             };
 
-            await _service.AddEstudiante(estudiante);
+            await _service.AddMateria(materia);
 
-            return CreatedAtAction(nameof(GetById), new { id = estudiante.IdEstudiante }, estudiante);
+            return CreatedAtAction(nameof(GetById), new { id = materia.IdMateria }, materia);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Estudiante estudiante)
+        public async Task<IActionResult> Update(int id, [FromBody] Materia Materia)
         {
-            if (id != estudiante.IdEstudiante) return BadRequest();
-            await _service.UpdateEstudiante(estudiante);
+            if (id != Materia.IdMateria) return BadRequest();
+            await _service.UpdateMateria(Materia);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteEstudiante(id);
+            await _service.DeleteMateria(id);
             return NoContent();
         }
     }

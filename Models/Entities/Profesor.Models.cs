@@ -4,6 +4,8 @@
     public class Profesor
     {
         public int IdProfesor { get; set; }
+
+        public int IdUsuario { get; set; }
         public int cedula { get; set; }
         public string Telefono { get; set; }
         public string CorreoPersonal { get; set; }
