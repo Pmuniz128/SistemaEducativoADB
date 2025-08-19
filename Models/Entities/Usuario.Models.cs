@@ -16,6 +16,7 @@ namespace SistemaEducativoADB.API.Models.Entities
         public DateTime FechaCreacion { get; set; } // fecha_creacion
 
         public Estudiante Estudiante { get; set; }
+        public Profesor Profesor { get; set; }
     }
 
 }

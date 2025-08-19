@@ -6,13 +6,12 @@ namespace SistemaEducativoADB.API.Data
     public class DBContext : DbContext
     {
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }
-    
 
-        // Aquí defines los DbSets, que representan tablas en la base de datos
+        // DbSets (Tablas)
         public DbSet<Estudiante> Estudiantes { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Profesor> Profesores { get; set; }
 
-
-        // Método para configurar relaciones, reglas y restricciones
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuración de ESTUDIANTES
@@ -51,6 +50,39 @@ namespace SistemaEducativoADB.API.Data
                       .OnDelete(DeleteBehavior.Restrict);
             });
 
+            // Configuración de PROFESORES
+            modelBuilder.Entity<Profesor>(entity =>
+            {
+                entity.ToTable("PROFESORES");
+
+                entity.HasKey(p => p.IdProfesor);
+
+                entity.Property(p => p.IdProfesor)
+                      .HasColumnName("id_profesor");
+
+                entity.Property(p => p.IdUsuario)
+                      .HasColumnName("id_usuario");
+
+                entity.Property(p => p.Cedula)
+                      .HasColumnName("cedula")
+                      .HasMaxLength(20)
+                      .IsRequired();
+
+                entity.Property(p => p.Telefono)
+                      .HasColumnName("telefono")
+                      .HasMaxLength(20);
+
+                entity.Property(p => p.CorreoPersonal)
+                      .HasColumnName("correo_personal")
+                      .HasMaxLength(100);
+
+                // Relación 1:1 con Usuario
+                entity.HasOne(p => p.Usuario)
+                      .WithOne(u => u.Profesor)
+                      .HasForeignKey<Profesor>(p => p.IdUsuario)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+
             // Configuración de USUARIOS
             modelBuilder.Entity<Usuario>(entity =>
             {
@@ -85,6 +117,5 @@ namespace SistemaEducativoADB.API.Data
                       .HasDefaultValueSql("GETDATE()");
             });
         }
-
     }
 }

@@ -7,5 +7,7 @@
         public int cedula { get; set; }
         public string Telefono { get; set; }
         public string CorreoPersonal { get; set; }
+
+        public Usuario Usuario { get; set; }
     }
 }
