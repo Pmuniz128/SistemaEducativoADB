@@ -115,6 +115,22 @@ namespace SistemaEducativoADB.API.Data
                 //       .OnDelete(DeleteBehavior.Restrict);
             });
 
+            // Configuración de CARRERAS
+            modelBuilder.Entity<Carrera>(entity =>
+            {
+                entity.ToTable("CARRERAS");
+
+                entity.HasKey(c => c.IdCarrera);
+
+                entity.Property(c => c.IdCarrera)
+                      .HasColumnName("id_carrera");
+
+                entity.Property(c => c.NombreCarrera)
+                      .HasColumnName("nombre_carrera")
+                      .HasMaxLength(100)
+                      .IsRequired();
+            });
+
             // Configuración de USUARIOS
             modelBuilder.Entity<Usuario>(entity =>
             {
