@@ -5,11 +5,11 @@ using SistemaEducativoADB.API.Repositories.Interfaces;
 
 namespace SistemaEducativoADB.API.Repositories.Implementatios
 {
-    public class EstudianteRepository : IEstudianteRepository
+    public class MateriaRepository : IMateriaRepository
     {
         private readonly DbContext _context;
 
-        public EstudianteRepository(DBContext context)
+        public MateriaRepository(DBContext context)
         {
             _context = context;
         }
@@ -17,36 +17,42 @@ namespace SistemaEducativoADB.API.Repositories.Implementatios
         // Replace all occurrences of '_context.Estudiantes' with '_context.Set<Estudiante>()'
         // This uses the generic Set<TEntity>() method of DbContext to access the Estudiante DbSet.
 
-        public async Task<IEnumerable<Estudiante>> GetAllAsync()
+        public async Task<IEnumerable<Materia>> GetAllAsync()
         {
-            return await _context.Set<Estudiante>().ToListAsync();
+            return await _context.Set<Materia>().ToListAsync();
         }
 
-        public async Task<Estudiante> GetByIdAsync(int id)
+        public async Task<Materia> GetByIdAsync(int id)
         {
-            return await _context.Set<Estudiante>().FindAsync(id);
+            return await _context.Set<Materia>().FindAsync(id);
         }
 
-        public async Task AddAsync(Estudiante estudiante)
+        public async Task AddAsync(Materia materia)
         {
-            await _context.Set<Estudiante>().AddAsync(estudiante);
+            await _context.Set<Materia>().AddAsync(materia);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Estudiante estudiante)
+        public async Task UpdateAsync(Materia materia)
         {
-            _context.Set<Estudiante>().Update(estudiante);
+            _context.Set<Materia>().Update(materia);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var estudiante = await GetByIdAsync(id);
-            if (estudiante != null)
+            var materia = await GetByIdAsync(id);
+            if (materia != null)
             {
-                _context.Set<Estudiante>().Remove(estudiante);
+                _context.Set<Materia>().Remove(materia);
                 await _context.SaveChangesAsync();
             }
         }
+
+        Task<Materia> IMateriaRepository.GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using SistemaEducativoADB.API.Models.DTOs;
+using SistemaEducativoADB.API.Models.Entities;
+using SistemaEducativoADB.API.Services;
 using SistemaEducativoADB.API.Services.Interfaces;
 
 namespace SistemaEducativoADB.Controllers
@@ -15,10 +18,53 @@ namespace SistemaEducativoADB.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> GetAll()
         {
-            var estudiantes = _service.GetAll();
+            var estudiantes = await _service.GetAllEstudiantes();
             return Ok(estudiantes);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var estudiante = await _service.GetEstudianteById(id);
+            if (estudiante == null) return NotFound();
+            return Ok(estudiante);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CrearEstudiante([FromBody] EstudianteCreateDto dto)
+        {
+            if (dto == null)
+                return BadRequest("Datos inválidos");
+
+            var estudiante = new Estudiante
+            {
+                IdUsuario = dto.IdUsuario,
+                Carnet = dto.carnet,
+                Telefono = dto.Telefono,
+                Direccion = dto.Direccion,
+                IdCarrera = dto.IdCarrera
+            };
+
+            await _service.AddEstudiante(estudiante);
+
+            return CreatedAtAction(nameof(GetById), new { id = estudiante.IdEstudiante }, estudiante);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Estudiante estudiante)
+        {
+            if (id != estudiante.IdEstudiante) return BadRequest();
+            await _service.UpdateEstudiante(estudiante);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _service.DeleteEstudiante(id);
+            return NoContent();
         }
     }
 }

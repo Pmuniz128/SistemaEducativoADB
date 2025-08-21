@@ -5,8 +5,7 @@ VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEducativoADB.API", "SistemaEducativoADB.API.csproj", "{BF0B47A9-1B08-405B-8A8E-F40F3526C6D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEducativo.Frontend", "SistemaEducativo.Frontend\SistemaEducativo.Frontend.csproj", "{4CD4638A-52C7-48C5-947F-F56B210003DD}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
