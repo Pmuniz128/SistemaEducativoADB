@@ -10,6 +10,6 @@
         public int? IdPlan { get; set; }   // id_plan (nullable por si no tiene plan asignado)
 
         // Relación con PlanEstudio (si se maneja la entidad)
-        public PlanEstudio PlanEstudio { get; set; }
+        //public PlanEstudio PlanEstudio { get; set; }
     }
     }

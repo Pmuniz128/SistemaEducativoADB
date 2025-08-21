@@ -38,20 +38,19 @@ namespace SistemaEducativoADB.Controllers
             if (dto == null)
                 return BadRequest("Datos inválidos");
 
-            var Profesor = new Profesor
+            var profesor = new Profesor
             {
-                IdProfesor = dto.IdProfesor,
-                cedula = dto.cedula,
+                IdUsuario = dto.IdUsuario,      
+                Cedula = dto.Cedula,
                 Telefono = dto.Telefono,
                 CorreoPersonal = dto.CorreoPersonal
             };
 
+            await _service.AddProfesor(profesor);
 
-
-            await _service.AddProfesor(Profesor);
-
-            return CreatedAtAction(nameof(GetById), new { id = Profesor.IdProfesor }, Profesor);
+            return CreatedAtAction(nameof(GetById), new { id = profesor.IdProfesor }, profesor);
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Profesor Profesor)

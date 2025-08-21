@@ -41,7 +41,7 @@ namespace SistemaEducativoADB.Controllers
             var estudiante = new Estudiante
             {
                 IdUsuario = dto.IdUsuario,
-                Carnet = dto.Carnet,
+                Carnet = dto.carnet,
                 Telefono = dto.Telefono,
                 Direccion = dto.Direccion,
                 IdCarrera = dto.IdCarrera

@@ -40,4 +40,5 @@ namespace SistemaEducativoADB.API.Services
             await _repository.DeleteAsync(id);
         }
     }
+
 }

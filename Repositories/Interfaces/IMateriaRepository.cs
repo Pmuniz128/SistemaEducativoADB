@@ -6,8 +6,8 @@ namespace SistemaEducativoADB.API.Repositories.Interfaces
     {
         Task<IEnumerable<Materia>> GetAllAsync();
         Task<Materia> GetByIdAsync(int id);
-        Task AddAsync(Materia Materia);
-        Task UpdateAsync(Materia Materia);
+        Task AddAsync(Materia materia);
+        Task UpdateAsync(Materia materia);
         Task DeleteAsync(int id);
     }
 }

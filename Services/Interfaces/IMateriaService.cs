@@ -6,9 +6,8 @@ namespace SistemaEducativoADB.API.Services.Interfaces
     {
         Task<IEnumerable<Materia>> GetAllMaterias();
         Task<Materia> GetMateriaById(int id);
-        Task AddMateria(Materia Materia);
-        Task UpdateMateria(Materia Materia);
-        Task DeleteMateria(int id); 
-        Task DeleteMateriaById(int id);
+        Task AddMateria(Materia materia);
+        Task UpdateMateria(Materia materia);
+        Task DeleteMateria(int id);
     }
 }

@@ -14,8 +14,8 @@ namespace SistemaEducativoADB.API.Repositories.Implementatios
             _context = context;
         }
 
-        // Replace all occurrences of '_context.Materias' with '_context.Set<Materia>()'
-        // This uses the generic Set<TEntity>() method of DbContext to access the Materia DbSet.
+        // Replace all occurrences of '_context.Estudiantes' with '_context.Set<Estudiante>()'
+        // This uses the generic Set<TEntity>() method of DbContext to access the Estudiante DbSet.
 
         public async Task<IEnumerable<Materia>> GetAllAsync()
         {
@@ -27,26 +27,32 @@ namespace SistemaEducativoADB.API.Repositories.Implementatios
             return await _context.Set<Materia>().FindAsync(id);
         }
 
-        public async Task AddAsync(Materia Materia)
+        public async Task AddAsync(Materia materia)
         {
-            await _context.Set<Materia>().AddAsync(Materia);
+            await _context.Set<Materia>().AddAsync(materia);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Materia Materia)
+        public async Task UpdateAsync(Materia materia)
         {
-            _context.Set<Materia>().Update(Materia);
+            _context.Set<Materia>().Update(materia);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var Materia = await GetByIdAsync(id);
-            if (Materia != null)
+            var materia = await GetByIdAsync(id);
+            if (materia != null)
             {
-                _context.Set<Materia>().Remove(Materia);
+                _context.Set<Materia>().Remove(materia);
                 await _context.SaveChangesAsync();
             }
         }
+
+        Task<Materia> IMateriaRepository.GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

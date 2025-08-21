@@ -60,7 +60,10 @@ namespace SistemaEducativoADB.API.Data
                 entity.Property(p => p.IdProfesor)
                       .HasColumnName("id_profesor");
 
-                entity.Property(p => p.cedula)
+                entity.Property(p => p.IdUsuario)
+                      .HasColumnName("id_usuario");
+
+                entity.Property(p => p.Cedula)
                       .HasColumnName("cedula")
                       .HasMaxLength(20)
                       .IsRequired();
@@ -73,12 +76,12 @@ namespace SistemaEducativoADB.API.Data
                       .HasColumnName("correo_personal")
                       .HasMaxLength(100);
 
-                // Relación 1:1 con Usuario
                 entity.HasOne(p => p.Usuario)
                       .WithOne(u => u.Profesor)
                       .HasForeignKey<Profesor>(p => p.IdUsuario)
                       .OnDelete(DeleteBehavior.Restrict);
             });
+
 
             // Configuración de MATERIAS
             modelBuilder.Entity<Materia>(entity =>

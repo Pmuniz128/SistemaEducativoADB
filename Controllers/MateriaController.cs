@@ -8,11 +8,11 @@ namespace SistemaEducativoADB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MateriasController : ControllerBase
+    public class MateriaController : ControllerBase
     {
         private readonly IMateriaService _service;
 
-        public MateriasController(IMateriaService service)
+        public MateriaController(IMateriaService service)
         {
             _service = service;
         }
@@ -35,15 +35,12 @@ namespace SistemaEducativoADB.Controllers
         [HttpPost]
         public async Task<IActionResult> CrearMateria([FromBody] MateriaCreateDto dto)
         {
-            if (dto == null)
-                return BadRequest("Datos inválidos");
+            if (dto == null || string.IsNullOrWhiteSpace(dto.nombre))
+                return BadRequest("El nombre de la materia es obligatorio.");
 
             var materia = new Materia
             {
-                Codigo = dto.Codigo,
-                Nombre = dto.Nombre,
-                Creditos = dto.Creditos,
-                IdPlan = dto.IdPlan
+                Nombre = dto.nombre
             };
 
             await _service.AddMateria(materia);
@@ -51,11 +48,12 @@ namespace SistemaEducativoADB.Controllers
             return CreatedAtAction(nameof(GetById), new { id = materia.IdMateria }, materia);
         }
 
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Materia Materia)
+        public async Task<IActionResult> Update(int id, [FromBody] Materia materia)
         {
-            if (id != Materia.IdMateria) return BadRequest();
-            await _service.UpdateMateria(Materia);
+            if (id != materia.IdMateria) return BadRequest();
+            await _service.UpdateMateria(materia);
             return NoContent();
         }
 
