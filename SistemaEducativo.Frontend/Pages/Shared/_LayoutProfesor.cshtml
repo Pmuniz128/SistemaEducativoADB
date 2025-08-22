@@ -22,6 +22,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
+             <a class="navbar-brand" asp-page="/Index">
+                <img src="~/images/logo.png" alt="Logo" style="height: 8rem;" />
+             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -37,10 +40,10 @@
                             Gestión Académica
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="academicaDropdown">
-                            <li><a class="dropdown-item" asp-page="/Usuarios/Grupos">Grupos Asignados</a></li>
-                            <li><a class="dropdown-item" asp-page="/Usuarios/Listas">Lista de Estudiantes</a></li>
-                            <li><a class="dropdown-item" asp-page="/Usuarios/Registrar">Registrar Asistencia</a></li>
-                            <li><a class="dropdown-item" asp-page="/Usuarios/Ausencias">Registrar Ausencias</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/Grupos">Grupos Asignados</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/Listas">Lista de Estudiantes</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/Registrar">Registrar Asistencia</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/Ausencias">Ver Ausencias</a></li>
                         </ul>
                     </li>
 
@@ -50,8 +53,8 @@
                             Gestión de Notas
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="notasDropdown">
-                            <li><a class="dropdown-item" asp-page="/Notas/Registrar">Registrar Notas</a></li>
-                            <li><a class="dropdown-item" asp-page="/Notas/EstadoAcademico">Ver Estado Académico de Grupos</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/RegistrarNotas">Registrar Notas</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/EstadoAcademico">Ver Estado Académico de Grupos</a></li>
                         </ul>
                     </li>
 
@@ -61,9 +64,7 @@
                             Comunicación y Reportes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
-                            <li><a class="dropdown-item" asp-page="/Reportes/RecordAcademico">Consultar Récord Académico</a></li>
-                            <li><a class="dropdown-item" asp-page="/Reportes/ExportarNotas">Exportar Notas</a></li>
-                            <li><a class="dropdown-item" asp-page="/Reportes/ExportarAsistencia">Exportar Asistencia</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/VerNotas">Ver Notas</a></li>
                         </ul>
                     </li>
 
@@ -73,11 +74,10 @@
                             Perfil del Profesor
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="perfilDropdown">
-                            <li><a class="dropdown-item" asp-page="/Perfil/ActualizarDatos">Actualizar Datos Personales</a></li>
-                            <li><a class="dropdown-item" asp-page="/Perfil/HistorialGrupos">Consultar Historial de Grupos Impartidos</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/ActualizarDatos">Actualizar Datos Personales</a></li>
+                            <li><a class="dropdown-item" asp-page="/Frontend/profesor/HistorialGrupos">Consultar Historial de Grupos Impartidos</a></li>
                         </ul>
                     </li>
-
                 </ul>
             </div>
         </div>
