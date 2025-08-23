@@ -2,6 +2,6 @@
 {
     public class CarreraCreateDto
     {
-        public string NombreCarrera { get; set; } // nombre_carrera
+        public string NombreCarrera { get; set; } = "";  // nombre_carrera
     }
 }

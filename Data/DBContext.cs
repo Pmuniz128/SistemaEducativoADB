@@ -11,6 +11,10 @@ namespace SistemaEducativoADB.API.Data
         public DbSet<Estudiante> Estudiantes { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Profesor> Profesores { get; set; }
+        public DbSet<Matricula> Matriculas { get; set; }
+        public DbSet<Grupo> Grupos { get; set; }
+        public DbSet<Horario> Horarios { get; set; }
+        public DbSet<Pago> Pagos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -166,6 +170,93 @@ namespace SistemaEducativoADB.API.Data
                 entity.Property(u => u.FechaCreacion)
                       .HasColumnName("fecha_creacion")
                       .HasDefaultValueSql("GETDATE()");
+            });
+
+
+            //Configuracion de MATRICULAS
+            modelBuilder.Entity<Matricula>(entity =>
+            {
+                entity.ToTable("MATRICULAS");
+                entity.HasKey(e => e.id_matricula);
+                entity.Property(e => e.id_matricula).HasColumnName("id_matricula");
+                entity.Property(e => e.id_estudiante).HasColumnName("id_estudiante");
+                entity.Property(e => e.id_periodo).HasColumnName("id_periodo");
+                entity.Property(e => e.estado).HasColumnName("estado").HasMaxLength(30);
+
+                entity.HasIndex(e => new { e.id_estudiante, e.id_periodo })
+                .IsUnique()
+                .HasDatabaseName("UX_Matriculas_EstudiantePeriodo");
+
+                // Relación con ESTUDIANTE
+                entity.HasOne<Estudiante>()
+                .WithMany()
+                .HasForeignKey(e => e.id_estudiante)
+                .HasConstraintName("FK_MATRICULAS_ESTUDIANTES")
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            //Configuracion de Grupos
+            modelBuilder.Entity<Grupo>(entity =>
+            {
+                entity.ToTable("GRUPOS");
+                entity.HasKey(g => g.IdGrupo);
+
+                entity.Property(g => g.IdGrupo).HasColumnName("id_grupo");
+                entity.Property(g => g.IdMateria).HasColumnName("id_materia");
+                entity.Property(g => g.IdProfesor).HasColumnName("id_profesor");
+                entity.Property(g => g.GrupoNumero).HasColumnName("grupo_numero").HasMaxLength(10);
+                entity.Property(g => g.Aula).HasColumnName("aula").HasMaxLength(50);
+                entity.Property(g => g.CupoMax).HasColumnName("cupo_max");
+
+                entity.HasOne(g => g.Materia)
+                      .WithMany()
+                      .HasForeignKey(g => g.IdMateria)
+                      .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(g => g.Profesor)
+                      .WithMany()
+                      .HasForeignKey(g => g.IdProfesor)
+                      .OnDelete(DeleteBehavior.Restrict);
+
+            });
+
+            //Configuracion de Horarios
+            modelBuilder.Entity<Horario>(entity =>
+            {
+                entity.ToTable("HORARIOS");
+                entity.HasKey(h => h.IdHorario);
+
+                entity.Property(h => h.IdHorario).HasColumnName("id_horario");
+                entity.Property(h => h.IdGrupo).HasColumnName("id_grupo");
+                entity.Property(h => h.DiaSemana).HasColumnName("dia_semana").HasMaxLength(20);
+                entity.Property(h => h.HoraInicio).HasColumnName("hora_inicio").HasColumnType("time(0)");
+                entity.Property(h => h.HoraFin).HasColumnName("hora_fin").HasColumnType("time(0)");
+
+                // FK hacia Grupo
+                entity.HasOne(h => h.Grupo)
+                      .WithMany()
+                      .HasForeignKey(h => h.IdGrupo)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            //Configuracion de Pagos
+            modelBuilder.Entity<Pago>(entity =>
+            {
+                entity.ToTable("PAGOS");
+                entity.HasKey(p => p.IdPago);
+
+                entity.Property(p => p.IdPago).HasColumnName("id_pago");
+                entity.Property(p => p.IdEstudiante).HasColumnName("id_estudiante");
+                entity.Property(p => p.Monto).HasColumnName("monto").HasColumnType("decimal(18,2)"); // o "money"
+                entity.Property(p => p.Fecha).HasColumnName("fecha");
+                entity.Property(p => p.Estado).HasColumnName("estado").HasMaxLength(30);
+                entity.Property(p => p.MetodoPago).HasColumnName("metodo_pago").HasMaxLength(30);
+
+                // FK opcional hacia Estudiante
+                entity.HasOne(p => p.Estudiante)
+                      .WithMany()
+                      .HasForeignKey(p => p.IdEstudiante)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
         }
     }
