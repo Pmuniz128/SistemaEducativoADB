@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+<h1>Dashboard de Prueba</h1>
+
+<h2>Carreras</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre Carrera</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var carrera in Model.Carreras)
+        {
+            <tr>
+                <td>@carrera.IdCarrera</td>
+                <td>@carrera.NombreCarrera</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Materias</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre Materia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var materia in Model.Materias)
+        {
+            <tr>
+                <td>@materia.IdMateria</td>
+                <td>@materia.NombreMateria</td>
+            </tr>
+        }
+    </tbody>
+</table>

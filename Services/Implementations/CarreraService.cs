@@ -4,16 +4,11 @@ using SistemaEducativoADB.API.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SistemaEducativoADB.API.Services
+namespace SistemaEducativoADB.API.Services.Implementations
 {
-    public class CarreraService : ICarreraService
+    public class CarreraService(ICarreraRepository repository) : ICarreraService
     {
-        private readonly ICarreraRepository _repository;
-
-        public CarreraService(ICarreraRepository repository)
-        {
-            _repository = repository;
-        }
+        private readonly ICarreraRepository _repository = repository;
 
         public async Task<IEnumerable<Carrera>> GetAllCarreras()
         {
